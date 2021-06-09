@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">adichallenge-stefan</string>
+    <string name="search">Search</string>
+    <string name="add_review">add review</string>
+    <string name="price">price</string>
+    <string name="description">description</string>
+    <string name="product">product</string>
+    <string name="locale">locale</string>
+    <string name="id_product">id Product</string>
+    <string name="id">Id</string>
+    <string name="No_review_available">No review available</string>
+    <string name="no_reviews_or_ratings_available_for_this_products">no reviews or ratings available for this products. Please be the first to rate this product!</string>
+    <string name="please_leave_a_review">please leave a review</string>
+    <string name="please_rate_this_product">please rate this product</string>
+    <string name="cancel">cancel</string>
+    <string name="send">send</string>
+    <string name="write_your_a_review_here">write you a  review here. you can only use a max of 100 letters!</string>
+</resources>

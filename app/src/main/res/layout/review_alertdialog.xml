@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".5"
+        android:letterSpacing=".2"
+        android:text="@string/please_rate_this_product"
+        android:textAlignment="center"
+        android:textAllCaps="true" />
+
+    <RatingBar
+        android:id="@+id/numStarReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numStars="5"
+        android:stepSize="1"
+
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight=".5"
+        android:letterSpacing=".2"
+        android:text="@string/please_leave_a_review"
+        android:textAlignment="center"
+        android:textAllCaps="true" />
+
+    <EditText
+        android:id="@+id/leaveAReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_weight="2"
+        android:background="@color/lightGrey"
+        android:ems="1"
+        android:gravity="start"
+        android:hint="@string/write_your_a_review_here"
+        android:inputType="textMultiLine"
+
+        android:minLines="5"
+        android:autofillHints="" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_weight="6"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <Button
+                android:layout_marginHorizontal="1dp"
+                android:id="@+id/cancelReview"
+                android:text="@string/cancel"
+                />
+            <Button
+                android:layout_marginHorizontal="1dp"
+                android:id="@+id/sendReview"
+                android:text="@string/send" />
+        </TableRow>
+
+
+    </TableLayout>
+
+</LinearLayout>

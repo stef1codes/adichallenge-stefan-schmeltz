@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_marginHorizontal="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:elevation="5dp"
+        android:weightSum="10">
+
+        <ImageView
+            android:layout_weight="4"
+            android:id="@+id/idImageView"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/ic_launcher_foreground"
+            tools:layout_editor_absoluteX="14dp"
+            tools:srcCompat="@tools:sample/avatars"
+            />
+        <LinearLayout
+            android:layout_marginStart="2dp"
+            android:layout_weight="6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:layout_editor_absoluteY="0dp"
+            android:weightSum="9"
+            >
+
+            <TextView
+                android:layout_weight="3"
+                android:id="@+id/idName"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:fontFamily="sans-serif-condensed-medium"
+                android:fontWeight="700"
+                android:letterSpacing=".2"
+                android:text="product"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold|italic"
+                tools:layout_editor_absoluteX="137dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+
+                />
+
+            <TextView
+                android:id="@+id/idDesciption"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:maxLines="3"
+                android:text="description"
+                android:layout_weight="3"
+                android:textColor="@color/black"
+                tools:layout_editor_absoluteX="138dp"
+                tools:layout_editor_absoluteY="54dp"
+                android:letterSpacing="0.1"
+
+                />
+
+            <TextView
+                android:id="@+id/idPrice"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="price"
+                android:letterSpacing="0.1"
+                android:textColor="@color/black"
+                android:layout_weight="3"
+
+
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
