@@ -19,6 +19,7 @@ class ReviewViewModel(private val repository: ReviewRepository) : ViewModel() {
     }
 
     fun sendReviews(id: String, review: String, rating: Int) {
+
         viewModelScope.launch { repository.sendReview(id, review, rating) }
     }
 
