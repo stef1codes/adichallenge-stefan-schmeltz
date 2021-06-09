@@ -140,7 +140,7 @@ class SingleProductActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
                 else -> {
-                    viewModel.sendReviews(id, review.text.toString().trim(), rating.numStars)
+                    viewModel.sendReviews(id, review.text.toString().trim(), rating.rating.toInt())
                     dialog.dismiss()
                 }
             }
