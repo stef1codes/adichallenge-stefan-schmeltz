@@ -1,13 +1,12 @@
 package com.example.adichallenge_stefan.retrofit.RetrofitReview
 
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
-interface ProductReviewService{
+interface ReviewService{
 
     @GET("reviews/{productId}")
-    suspend fun getSingleProductReview(@Path("productId") id:String): Response<List<ProductReview>>
+    suspend fun getSingleProductReview(@Path("productId") id:String): Response<List<Review>>
 
     @FormUrlEncoded
     @POST("reviews/{productId}")
@@ -15,7 +14,7 @@ interface ProductReviewService{
         @Path("productId") id:String?,
         @Field("rating") rating: Int,
         @Field("text") text: String
-    ): Response<ProductReview>
+    ): Response<Review>
 
 
 

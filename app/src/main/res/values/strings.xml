@@ -10,6 +10,7 @@
     <string name="id">Id</string>
     <string name="No_review_available">No review available</string>
     <string name="no_reviews_or_ratings_available_for_this_products">no reviews or ratings available for this products. Please be the first to rate this product!</string>
+    <string name="no_data_available">No data available? are you connected to an internet service? Please review your internet connection if it could solve this problem. Otherwise please contact us!</string>
     <string name="please_leave_a_review">please leave a review</string>
     <string name="please_rate_this_product">please rate this product</string>
     <string name="cancel">cancel</string>

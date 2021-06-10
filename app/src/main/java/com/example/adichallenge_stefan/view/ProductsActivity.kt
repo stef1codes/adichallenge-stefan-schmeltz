@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.adichallenge_stefan.Interfaces
 import com.example.adichallenge_stefan.R
 import com.example.adichallenge_stefan.viewmodel.productViewModel.ProductViewModel
 import com.example.adichallenge_stefan.viewmodel.productViewModel.ProductViewModelFactory
@@ -18,8 +20,9 @@ import com.example.adichallenge_stefan.repository.ProductsRepository
 import com.example.adichallenge_stefan.adapters.ProductListAdapter
 import com.example.adichallenge_stefan.adapters.onItemClickListener
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_single_product.*
 
-class ProductsActivity : AppCompatActivity() {
+class ProductsActivity : AppCompatActivity(), Interfaces {
 
     private lateinit var productAdapter: ProductListAdapter
     private lateinit var searchView: SearchView
@@ -30,6 +33,9 @@ class ProductsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        setUpdUiIds()
 
         setupViewModel()
 
@@ -46,6 +52,10 @@ class ProductsActivity : AppCompatActivity() {
         idRecycleview.layoutManager = LinearLayoutManager(this)
     }
 
+    fun setUpdUiIds(){
+        idRecycleview.visibility = View.VISIBLE
+        no_data.visibility = View.GONE
+    }
     private fun setupViewModel() {
         viewModel = ViewModelProvider(
             this,
@@ -54,11 +64,16 @@ class ProductsActivity : AppCompatActivity() {
             )
         ).get(ProductViewModel::class.java)
         viewModel.getProducts()
+
     }
 
     private fun observeData() = viewModel.productsLiveData.observe(this, Observer {
-        it?.let { productAdapter.setData(it) }
-
+        if (it.isEmpty()) {
+            showListIsEmptyMessage()
+        } else {
+            showRecyclerview()
+            it?.let { productAdapter.setData(it) }
+        }
     })
 
 
@@ -85,7 +100,16 @@ class ProductsActivity : AppCompatActivity() {
         })
     }
 
+    override fun showListIsEmptyMessage() {
+        idRecycleview.visibility = View.GONE
+        no_data.visibility = View.VISIBLE
+    }
 
+    // if list is not empty show the recycleview with all of its reviews and ratings
+    override fun showRecyclerview() {
+        idRecycleview.visibility = View.VISIBLE
+        no_data.visibility = View.GONE
+    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         val search = menu?.findItem(R.id.search)

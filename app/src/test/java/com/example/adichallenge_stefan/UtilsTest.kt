@@ -1,23 +1,20 @@
-package com.example.adichallenge_stefan.viewmodel.reviewViewModel
-
-import com.example.adichallenge_stefan.repository.ReviewRepository
-import org.junit.Test
+package com.example.adichallenge_stefan
 
 import org.junit.Assert.*
+import org.junit.Test
 
-class ReviewViewModelTest {
-
+class UtilsTest{
     @Test
     fun `When is EditText Empty`() {
         // return true if the user hasn't written a review before sending
-        val result = ReviewViewModel(ReviewRepository()).isEditTextEmpty("")
+        val result = Utils().isEditTextEmpty("")
         assertEquals(true,result)
 
     }
     @Test
     fun `When is not EditText Empty`() {
         // return true if the user hasn't written a review before sending
-        val result = ReviewViewModel(ReviewRepository()).isEditTextEmpty("Cool product!!!")
+        val result = Utils().isEditTextEmpty("Cool product!!!")
         assertEquals(false,result)
 
     }
@@ -25,7 +22,7 @@ class ReviewViewModelTest {
     @Test
     fun `When Product is Not Rated`() {
         // return true if the product is'nt rated yet before sending a review
-        val result = ReviewViewModel(ReviewRepository()).isProductNotRated(0)
+        val result = Utils().isProductNotRated(0)
         assertEquals(true,result)
 
     }
@@ -33,7 +30,7 @@ class ReviewViewModelTest {
     @Test
     fun `When Product is Rated`() {
         // return true if the product is'nt rated yet before sending a review
-        val result2 = ReviewViewModel(ReviewRepository()).isProductNotRated(1)
+        val result2 = Utils().isProductNotRated(1)
         assertEquals(false,result2)
     }
 }

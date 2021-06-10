@@ -15,9 +15,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.example.adichallenge_stefan.Interfaces
 import com.example.adichallenge_stefan.R
 import com.example.adichallenge_stefan.R.drawable
 import com.example.adichallenge_stefan.R.layout
+import com.example.adichallenge_stefan.Utils
 import com.example.adichallenge_stefan.adapters.ReviewListAdapter
 import com.example.adichallenge_stefan.repository.ReviewRepository
 import com.example.adichallenge_stefan.viewmodel.reviewViewModel.ReviewViewModel
@@ -25,7 +27,7 @@ import com.example.adichallenge_stefan.viewmodel.reviewViewModel.ReviewViewModel
 import kotlinx.android.synthetic.main.activity_single_product.*
 
 
-class SingleProductActivity : AppCompatActivity() {
+class SingleProductActivity : AppCompatActivity(), Interfaces {
     private lateinit var id: String
     private lateinit var name: String
     private lateinit var image: String
@@ -61,7 +63,6 @@ class SingleProductActivity : AppCompatActivity() {
             )
         ).get(ReviewViewModel::class.java)
         viewModel.getReviews(id)
-
     }
 
     private fun setupReviewAdapter() {
@@ -102,13 +103,13 @@ class SingleProductActivity : AppCompatActivity() {
     })
 
     // if list is empty show a message
-    private fun showListIsEmptyMessage() {
+    override fun showListIsEmptyMessage() {
         reviewRecyclerView.visibility = View.GONE
         no_ratings.visibility = View.VISIBLE
     }
 
     // if list is not empty show the recycleview with all of its reviews and ratings
-    private fun showRecyclerview() {
+    override fun showRecyclerview() {
         reviewRecyclerView.visibility = View.VISIBLE
         no_ratings.visibility = View.GONE
     }
@@ -132,9 +133,9 @@ class SingleProductActivity : AppCompatActivity() {
         //Send customer review
         sendReview.setOnClickListener {
             when {
-                viewModel.isEditTextEmpty(review.text.toString()) -> Toast.makeText(this, "Please write a review before sending.", Toast.LENGTH_SHORT)
+                Utils().isEditTextEmpty(review.text.toString()) -> Toast.makeText(this, "Please write a review before sending.", Toast.LENGTH_SHORT)
                     .show()
-                viewModel.isProductNotRated(rating.numStars) -> Toast.makeText(
+                Utils().isProductNotRated(rating.numStars) -> Toast.makeText(
                     this,
                     "Please rate the product before sending ",
                     Toast.LENGTH_SHORT

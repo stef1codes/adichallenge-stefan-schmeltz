@@ -6,8 +6,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-object ProductReviewNetworkLayer {
+object ReviewNetworkLayer {
     private const val PRODUCT_BASE_URL = "http://192.168.2.10:3002/"
+    //private const val PRODUCT_BASE_URL = "http://localhost:3002/"
     private val retrofit = Retrofit.Builder()
             .baseUrl(PRODUCT_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -15,10 +16,10 @@ object ProductReviewNetworkLayer {
             .client(OkHttpClient.Builder().build())
             .build()
 
-    private val productService: ProductReviewService by lazy {
-        retrofit.create(ProductReviewService::class.java)
+    private val SERVICE: ReviewService by lazy {
+        retrofit.create(ReviewService::class.java)
     }
 
-    val apiClient = ProductReviewApiClient(productService)
+    val apiClient = ReviewApiClient(SERVICE)
 
 }
