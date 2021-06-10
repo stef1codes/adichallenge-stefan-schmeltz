@@ -19,7 +19,7 @@ import java.util.*
 
 
 class ProductListAdapter : ListAdapter<Product, ProductListAdapter.ProductViewHolder>(UserComparator()), Filterable {
-    private lateinit var mListener: onItemClickListener
+    private lateinit var mListener: OnItemClickListener
     private var list = mutableListOf<Product>()
 
     fun setData(list: List<Product>) {
@@ -27,7 +27,7 @@ class ProductListAdapter : ListAdapter<Product, ProductListAdapter.ProductViewHo
         submitList(list)
     }
 
-    fun setOnitemClickListener(listener: onItemClickListener) {
+    fun setOnItemClickListener(listener: OnItemClickListener) {
         mListener = listener
     }
 
@@ -40,7 +40,7 @@ class ProductListAdapter : ListAdapter<Product, ProductListAdapter.ProductViewHo
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val name: TextView = itemView.findViewById(R.id.idName)
-        private val description: TextView = itemView.findViewById(R.id.idDesciption)
+        private val description: TextView = itemView.findViewById(R.id.idDescription)
         private val price: TextView = itemView.findViewById(R.id.idPrice)
         private var image: ImageView = itemView.findViewById(R.id.idImageView)
         private lateinit var mProduct:Product

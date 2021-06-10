@@ -9,11 +9,6 @@ interface ProductService{
     @GET("/product")
     suspend fun getProducts(): Response<List<Product>>
 
-    @GET("/product/{id}")
-    suspend fun getSingleProduct(@Path("id") id:String): Response<Product>
-
-
-
 
 }
 

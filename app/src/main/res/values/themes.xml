@@ -16,7 +16,7 @@
 
     <style name="singleProductStyle">
         <item name="android:letterSpacing">.2</item>
-        <item name="android:textAllCaps  ">true</item>
+        <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:layout_marginStart">10dp</item>
     </style>

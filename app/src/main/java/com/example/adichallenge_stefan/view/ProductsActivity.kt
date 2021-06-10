@@ -18,9 +18,8 @@ import com.example.adichallenge_stefan.viewmodel.productViewModel.ProductViewMod
 import com.example.adichallenge_stefan.repository.ProductsRepository
 
 import com.example.adichallenge_stefan.adapters.ProductListAdapter
-import com.example.adichallenge_stefan.adapters.onItemClickListener
+import com.example.adichallenge_stefan.adapters.OnItemClickListener
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_single_product.*
 
 class ProductsActivity : AppCompatActivity(), Interfaces {
 
@@ -52,7 +51,7 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
         idRecycleview.layoutManager = LinearLayoutManager(this)
     }
 
-    fun setUpdUiIds(){
+    private fun setUpdUiIds(){
         idRecycleview.visibility = View.VISIBLE
         no_data.visibility = View.GONE
     }
@@ -78,7 +77,7 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
 
 
     private fun clickOnItemAdapter() {
-        productAdapter.setOnitemClickListener(object : onItemClickListener {
+        productAdapter.setOnItemClickListener(object : OnItemClickListener {
             override fun onItemClick(
                 id: String,
                 name: String,
@@ -105,7 +104,7 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
         no_data.visibility = View.VISIBLE
     }
 
-    // if list is not empty show the recycleview with all of its reviews and ratings
+    // if list is not empty show the recyclerview with all of its reviews and ratings
     override fun showRecyclerview() {
         idRecycleview.visibility = View.VISIBLE
         no_data.visibility = View.GONE
@@ -122,7 +121,7 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if (newText != null) {
                     viewModel.searchText.value = newText
-                    productAdapter.filter.filter(viewModel.searchText.value);
+                    productAdapter.filter.filter(viewModel.searchText.value)
                 }
                 return false
             }

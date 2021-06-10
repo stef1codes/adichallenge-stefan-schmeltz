@@ -52,7 +52,7 @@ class SingleProductActivity : AppCompatActivity(), Interfaces {
 
         observeData()
 
-        setDatatoUiIds()
+        setDataToUiIds()
     }
 
     private fun setupViewModel() {
@@ -82,11 +82,11 @@ class SingleProductActivity : AppCompatActivity(), Interfaces {
 
     }
 
-    private fun setDatatoUiIds() {
+    private fun setDataToUiIds() {
         idProduct.text = id
         idName.text = name
         idPrice.text = "$currency$price"
-        idDesciption.text = description
+        idDescription.text = description
         Glide.with(idSingleImageView)
             .load(image).transform(CenterInside(), RoundedCorners(25))
             .placeholder(drawable.ic_launcher_background)
@@ -108,7 +108,7 @@ class SingleProductActivity : AppCompatActivity(), Interfaces {
         no_ratings.visibility = View.VISIBLE
     }
 
-    // if list is not empty show the recycleview with all of its reviews and ratings
+    // if list is not empty show the recyclerview with all of its reviews and ratings
     override fun showRecyclerview() {
         reviewRecyclerView.visibility = View.VISIBLE
         no_ratings.visibility = View.GONE
@@ -116,7 +116,7 @@ class SingleProductActivity : AppCompatActivity(), Interfaces {
 
     private fun showPopUpWindow() {
         val builder = AlertDialog.Builder(this)
-        val dialogView: View = this.layoutInflater.inflate(R.layout.review_alertdialog, null)
+        val dialogView: View = this.layoutInflater.inflate(layout.review_alertdialog, null)
         builder.setView(dialogView)
         val dialog = builder.create()
         dialog.show()
@@ -146,7 +146,7 @@ class SingleProductActivity : AppCompatActivity(), Interfaces {
                 }
             }
         }
-        //cancel the alertdialog
+        //cancel the alertDialog
         cancelReview.setOnClickListener {
             dialog.dismiss()
         }
@@ -156,7 +156,7 @@ class SingleProductActivity : AppCompatActivity(), Interfaces {
         showPopUpWindow()
     }
 
-    fun EditText.setMaxLength(maxLength: Int){
+    private fun EditText.setMaxLength(maxLength: Int){
         filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength))
     }
 }

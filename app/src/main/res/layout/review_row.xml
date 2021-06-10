@@ -61,7 +61,7 @@
                     android:scrollbars="vertical"
                     android:textStyle="italic"
                     android:textSize="16dp"
-                    tools:text="Bayern Munchen" />
+                    tools:text="review" />
             </ScrollView>
 
         </LinearLayout>
