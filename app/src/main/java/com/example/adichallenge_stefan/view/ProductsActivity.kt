@@ -52,7 +52,8 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
     }
 
     private fun setUpdUiIds(){
-        idRecycleview.visibility = View.VISIBLE
+        product_circular.visibility =View.VISIBLE
+        idRecycleview.visibility = View.GONE
         no_data.visibility = View.GONE
     }
     private fun setupViewModel() {
@@ -86,7 +87,7 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
                 imageUrl: String,
                 currency: String
             ) {
-                val intent = Intent(this@ProductsActivity, SingleProductActivity::class.java)
+                val intent = Intent(this@ProductsActivity, ReviewActivity::class.java)
                 intent.putExtra("ID",id)
                 intent.putExtra("NAME",name)
                 intent.putExtra("DESCRIPTION",description)
@@ -100,6 +101,7 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
     }
 
     override fun showListIsEmptyMessage() {
+        product_circular.visibility = View.GONE
         idRecycleview.visibility = View.GONE
         no_data.visibility = View.VISIBLE
     }
@@ -108,6 +110,8 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
     override fun showRecyclerview() {
         idRecycleview.visibility = View.VISIBLE
         no_data.visibility = View.GONE
+        product_circular.visibility = View.GONE
+
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)

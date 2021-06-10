@@ -27,7 +27,7 @@ import com.example.adichallenge_stefan.viewmodel.reviewViewModel.ReviewViewModel
 import kotlinx.android.synthetic.main.activity_single_product.*
 
 
-class SingleProductActivity : AppCompatActivity(), Interfaces {
+class ReviewActivity : AppCompatActivity(), Interfaces {
     private lateinit var id: String
     private lateinit var name: String
     private lateinit var image: String
@@ -83,6 +83,10 @@ class SingleProductActivity : AppCompatActivity(), Interfaces {
     }
 
     private fun setDataToUiIds() {
+        review_progressbar.visibility = View.VISIBLE
+        reviewRecyclerView.visibility = View.GONE
+        no_ratings.visibility = View.GONE
+
         idProduct.text = id
         idName.text = name
         idPrice.text = "$currency$price"
@@ -104,12 +108,14 @@ class SingleProductActivity : AppCompatActivity(), Interfaces {
 
     // if list is empty show a message
     override fun showListIsEmptyMessage() {
+        review_progressbar.visibility = View.GONE
         reviewRecyclerView.visibility = View.GONE
         no_ratings.visibility = View.VISIBLE
     }
 
     // if list is not empty show the recyclerview with all of its reviews and ratings
     override fun showRecyclerview() {
+        review_progressbar.visibility = View.GONE
         reviewRecyclerView.visibility = View.VISIBLE
         no_ratings.visibility = View.GONE
     }

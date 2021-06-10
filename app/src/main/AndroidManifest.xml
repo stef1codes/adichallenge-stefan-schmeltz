@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Adichallengestefan"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.SingleProductActivity"
+        <activity android:name=".view.ReviewActivity"
             android:parentActivityName=".view.ProductsActivity"
             android:screenOrientation="portrait"
             />

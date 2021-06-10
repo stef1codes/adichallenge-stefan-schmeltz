@@ -26,7 +26,7 @@ class ReviewListAdapter : ListAdapter<Review, ReviewListAdapter.ProductViewHolde
         private val description = itemView.findViewById<TextView>(R.id.reviewDescription)
         private val ratingBar = itemView.findViewById<RatingBar>(R.id.reviewRatingBar)
         fun bind(pr: Review) {
-            description.text = if (pr.text.isNotEmpty()) pr.text else "No review available"
+            description.text = if (!pr.text.isNullOrEmpty()) pr.text else "No review available"
             ratingBar.rating = pr.rating.toFloat()
         }
     }
