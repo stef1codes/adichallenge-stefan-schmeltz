@@ -9,17 +9,19 @@ import com.example.adichallenge_stefan.repository.ProductsRepository
 import kotlinx.coroutines.launch
 
 class ProductViewModel(private val repository: ProductsRepository) : ViewModel() {
+
+    private var _productsLiveData = MutableLiveData<List<Product>>()
+    val productsLiveData: LiveData<List<Product>> = _productsLiveData
+
     val searchText: MutableLiveData<String> by lazy {
         MutableLiveData<String>()
     }
 
-    private var _productsLiveData = MutableLiveData<List<Product>>()
-
-    val productsLiveData: LiveData<List<Product>> = _productsLiveData
-
-    fun getProducts() {
+    init {
         viewModelScope.launch { _productsLiveData.postValue(repository.getProducts())}
+
     }
+
 
 
 

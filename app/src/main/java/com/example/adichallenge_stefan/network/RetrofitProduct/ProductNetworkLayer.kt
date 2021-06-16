@@ -9,8 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ProductNetworkLayer {
 
-    private const val PRODUCT_BASE_URL = "http://192.168.2.10:3001"
-    //private const val PRODUCT_BASE_URL = "http://localhost:3001"
+    private const val PRODUCT_BASE_URL = "http://localhost:3001"
 
     private val retrofit = Retrofit.Builder()
             .baseUrl(PRODUCT_BASE_URL)

@@ -33,15 +33,25 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /** Initialize the id from this view **/
         setUpdUiIds()
 
+        /** Initialize the viewmodel that will call the function Getproduct that will interact with the repository class **/
         setupViewModel()
 
+        /** Setup the recyclerviewadapter **/
         setupAdapter()
 
+        /** Observe data coming from the viewModel. if the list is empty,
+        it will not be added to the listadapter.
+         If its not empty the data will be added in the list adapter **/
         observeData()
 
+        /**
+         If the user clicked on a product, It will take the information of the product
+         and take to the new Activity called 'ReviewActivity' **/
         clickOnItemAdapter()
+
     }
 
     private fun setupAdapter() {
@@ -56,13 +66,7 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
         no_data.visibility = View.GONE
     }
     private fun setupViewModel() {
-        viewModel = ViewModelProvider(
-            this,
-            ProductViewModelFactory(
-                ProductsRepository()
-            )
-        ).get(ProductViewModel::class.java)
-        viewModel.getProducts()
+        viewModel = ViewModelProvider(this, ProductViewModelFactory(ProductsRepository())).get(ProductViewModel::class.java)
 
     }
 

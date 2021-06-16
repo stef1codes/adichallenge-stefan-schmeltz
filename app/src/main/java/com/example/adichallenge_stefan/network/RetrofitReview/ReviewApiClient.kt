@@ -1,12 +1,12 @@
 package com.example.adichallenge_stefan.network.RetrofitReview
 
-import com.example.adichallenge_stefan.Utils
 import com.example.adichallenge_stefan.network.ApiResponse
+import com.example.adichallenge_stefan.safeApiCall
 
 class ReviewApiClient(private val reviewService: ReviewService) {
 
     suspend fun getSingleProducts(id: String): ApiResponse<List<Review>> {
-        return Utils().safeApiCall { reviewService.getSingleProductReview(id) }
+        return safeApiCall { reviewService.getSingleProductReview(id) }
     }
 
     suspend fun sendReviewForProducts(
@@ -14,7 +14,7 @@ class ReviewApiClient(private val reviewService: ReviewService) {
         review: String,
         rating: Int
     ): ApiResponse<Review> {
-        return Utils().safeApiCall { reviewService.sendReview(id, rating, review) }
+        return safeApiCall { reviewService.sendReview(id, rating, review) }
     }
 
 

@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RatingBar
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -15,19 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterInside
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.example.adichallenge_stefan.Interfaces
-import com.example.adichallenge_stefan.R
+import com.example.adichallenge_stefan.*
 import com.example.adichallenge_stefan.R.drawable
 import com.example.adichallenge_stefan.R.layout
-import com.example.adichallenge_stefan.Utils
 import com.example.adichallenge_stefan.adapters.ReviewListAdapter
 import com.example.adichallenge_stefan.repository.ReviewRepository
 import com.example.adichallenge_stefan.viewmodel.reviewViewModel.ReviewViewModel
 import com.example.adichallenge_stefan.viewmodel.reviewViewModel.ReviewViewModelFactory
 import kotlinx.android.synthetic.main.activity_single_product.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+
 
 
 class ReviewActivity : AppCompatActivity(), Interfaces {
@@ -69,6 +64,7 @@ class ReviewActivity : AppCompatActivity(), Interfaces {
                 ReviewRepository()
             )
         ).get(ReviewViewModel::class.java)
+
         viewModel.getReviews(id)
     }
 
@@ -85,8 +81,6 @@ class ReviewActivity : AppCompatActivity(), Interfaces {
         price = intent.getStringExtra("PRICE")!!
         image = intent.getStringExtra("IMAGE")!!
         currency = intent.getStringExtra("CURRENCY")!!
-
-
     }
 
     private fun setDataToUiIds() {
@@ -145,21 +139,10 @@ class ReviewActivity : AppCompatActivity(), Interfaces {
         review.setMaxLength(100)
         //Send customer review
         sendReview.setOnClickListener {
+            // When text is empty, show a toast message
             when {
-                // When text is empty, show a toast message
-                Utils().isEditTextEmpty(review.text.toString()) ->
-                    Toast.makeText(
-                        this,
-                        "Please write a review before sending.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                // When product is not rated  , show a toast message
-                Utils().isProductNotRated(rating.numStars) ->
-                    Toast.makeText(
-                        this,
-                        "Please rate the product before sending ",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                checkIfTextIsEmpty(review.text.toString()) -> showMessage(this,"Please write a review before sending")
+                checkIfProductNotRated(rating.numStars) -> showMessage(this,"Please rate the product before sending")
                 else -> {
                     // send the customer's review and dismiss the dialog
                     viewModel.sendReviews(id, review.text.toString().trim(), rating.rating.toInt())
@@ -177,9 +160,6 @@ class ReviewActivity : AppCompatActivity(), Interfaces {
         showPopUpWindow()
     }
 
-    private fun EditText.setMaxLength(maxLength: Int) {
-        filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength))
-    }
 }
 
 

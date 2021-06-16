@@ -7,14 +7,14 @@ class UtilsTest{
     @Test
     fun `When  EditText is Empty`() {
         // return true if the user hasn't written a review before sending
-        val result = Utils().isEditTextEmpty("")
+        val result = checkIfTextIsEmpty("")
         assertEquals(true,result)
 
     }
     @Test
     fun `When  EditText is not Empty`() {
         // return true if the user hasn't written a review before sending
-        val result = Utils().isEditTextEmpty("Cool product!!!")
+        val result = checkIfTextIsEmpty("Cool product!!!")
         assertEquals(false,result)
 
     }
@@ -22,7 +22,7 @@ class UtilsTest{
     @Test
     fun `When Product is Not Rated`() {
         // return true if the product is'nt rated yet before sending a review
-        val result = Utils().isProductNotRated(0)
+        val result = checkIfProductNotRated(0)
         assertEquals(true,result)
 
     }
@@ -30,7 +30,7 @@ class UtilsTest{
     @Test
     fun `When Product is Rated`() {
         // return true if the product is'nt rated yet before sending a review
-        val result2 = Utils().isProductNotRated(1)
+        val result2 = checkIfProductNotRated(1)
         assertEquals(false,result2)
     }
 }
