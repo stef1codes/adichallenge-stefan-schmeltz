@@ -1,7 +1,7 @@
-package com.example.adichallenge_stefan.retrofit.RetrofitReview
+package com.example.adichallenge_stefan.network.RetrofitReview
 
 import com.example.adichallenge_stefan.Utils
-import com.example.adichallenge_stefan.retrofit.ApiResponse
+import com.example.adichallenge_stefan.network.ApiResponse
 
 class ReviewApiClient(private val reviewService: ReviewService) {
 

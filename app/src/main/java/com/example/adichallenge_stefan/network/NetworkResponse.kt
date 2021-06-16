@@ -1,4 +1,4 @@
-package com.example.adichallenge_stefan.retrofit
+package com.example.adichallenge_stefan.network
 
 import retrofit2.Response
 import java.lang.Exception

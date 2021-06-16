@@ -1,4 +1,4 @@
-package com.example.adichallenge_stefan.retrofit.RetrofitReview
+package com.example.adichallenge_stefan.network.RetrofitProduct
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
@@ -6,9 +6,12 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-object ReviewNetworkLayer {
-    private const val PRODUCT_BASE_URL = "http://172.27.64.1:3002/"
-    //private const val PRODUCT_BASE_URL = "http://localhost:3002/"
+
+object ProductNetworkLayer {
+
+    private const val PRODUCT_BASE_URL = "http://192.168.2.10:3001"
+    //private const val PRODUCT_BASE_URL = "http://localhost:3001"
+
     private val retrofit = Retrofit.Builder()
             .baseUrl(PRODUCT_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -16,10 +19,10 @@ object ReviewNetworkLayer {
             .client(OkHttpClient.Builder().build())
             .build()
 
-    private val SERVICE: ReviewService by lazy {
-        retrofit.create(ReviewService::class.java)
+    private val productService:ProductService by lazy {
+        retrofit.create(ProductService::class.java)
     }
 
-    val apiClient = ReviewApiClient(SERVICE)
+    val apiClient = ProductApiClient(productService)
 
 }

@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.adichallenge_stefan.repository.ReviewRepository
-import com.example.adichallenge_stefan.retrofit.RetrofitReview.Review
+import com.example.adichallenge_stefan.network.RetrofitReview.Review
 import kotlinx.coroutines.launch
 
 class ReviewViewModel(private val repository: ReviewRepository) : ViewModel() {

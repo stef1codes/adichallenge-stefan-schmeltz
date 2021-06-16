@@ -1,10 +1,8 @@
 package com.example.adichallenge_stefan
 
-import com.example.adichallenge_stefan.retrofit.ApiResponse
+import com.example.adichallenge_stefan.network.ApiResponse
 import retrofit2.Response
 class Utils {
-
-
     inline fun <T> safeApiCall(apiCall: () -> Response<T>): ApiResponse<T> {
     return try {
         ApiResponse.success(apiCall.invoke())
@@ -14,8 +12,10 @@ class Utils {
 
 }
 
-fun isEditTextEmpty(text: String): Boolean = text.isEmpty()
+fun isEditTextEmpty(text: String): Boolean {
+    return text.isEmpty()
+}
+    fun isProductNotRated(numStars: Int): Boolean = numStars == 0
 
-fun isProductNotRated(numStars: Int): Boolean = numStars == 0
 
 }

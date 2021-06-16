@@ -25,6 +25,9 @@ import com.example.adichallenge_stefan.repository.ReviewRepository
 import com.example.adichallenge_stefan.viewmodel.reviewViewModel.ReviewViewModel
 import com.example.adichallenge_stefan.viewmodel.reviewViewModel.ReviewViewModelFactory
 import kotlinx.android.synthetic.main.activity_single_product.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class ReviewActivity : AppCompatActivity(), Interfaces {
@@ -36,7 +39,11 @@ class ReviewActivity : AppCompatActivity(), Interfaces {
     private lateinit var currency: String
     private lateinit var reviewAdapter: ReviewListAdapter
     private lateinit var viewModel: ReviewViewModel
-
+    private lateinit var dialogView: View
+    private lateinit var review: EditText
+    private lateinit var rating: RatingBar
+    private lateinit var sendReview  :Button
+    private lateinit var cancelReview:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,6 +102,12 @@ class ReviewActivity : AppCompatActivity(), Interfaces {
             .load(image).transform(CenterInside(), RoundedCorners(25))
             .placeholder(drawable.ic_launcher_background)
             .into(idSingleImageView)
+
+        dialogView = this.layoutInflater.inflate(layout.review_alertdialog, null)
+        review = dialogView.findViewById<View>(R.id.leaveAReview) as EditText
+        rating = dialogView.findViewById<View>(R.id.numStarReview) as RatingBar
+        sendReview   = dialogView.findViewById<View>(R.id.sendReview) as Button
+        cancelReview = dialogView.findViewById<View>(R.id.cancelReview) as Button
     }
 
     private fun observeData() = viewModel.productsLiveData.observe(this, Observer {
@@ -102,7 +115,9 @@ class ReviewActivity : AppCompatActivity(), Interfaces {
             showListIsEmptyMessage()
         } else {
             showRecyclerview()
-            it?.let { reviewAdapter.submitList(it) }
+            it?.let {
+                reviewAdapter.submitList(it)
+            }
         }
     })
 
@@ -122,31 +137,31 @@ class ReviewActivity : AppCompatActivity(), Interfaces {
 
     private fun showPopUpWindow() {
         val builder = AlertDialog.Builder(this)
-        val dialogView: View = this.layoutInflater.inflate(layout.review_alertdialog, null)
         builder.setView(dialogView)
         val dialog = builder.create()
         dialog.show()
 
-        val review = dialogView.findViewById<View>(R.id.leaveAReview) as EditText
-        val rating = dialogView.findViewById<View>(R.id.numStarReview) as RatingBar
-
-        // Button - send review and rating
-        val sendReview = dialogView.findViewById<View>(R.id.sendReview) as Button
-        //Cancel button - cancel process of sending a review and rating
-        val cancelReview = dialogView.findViewById<View>(R.id.cancelReview) as Button
         // set the max of words a user can type
         review.setMaxLength(100)
         //Send customer review
         sendReview.setOnClickListener {
             when {
-                Utils().isEditTextEmpty(review.text.toString()) -> Toast.makeText(this, "Please write a review before sending.", Toast.LENGTH_SHORT)
-                    .show()
-                Utils().isProductNotRated(rating.numStars) -> Toast.makeText(
-                    this,
-                    "Please rate the product before sending ",
-                    Toast.LENGTH_SHORT
-                ).show()
+                // When text is empty, show a toast message
+                Utils().isEditTextEmpty(review.text.toString()) ->
+                    Toast.makeText(
+                        this,
+                        "Please write a review before sending.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                // When product is not rated  , show a toast message
+                Utils().isProductNotRated(rating.numStars) ->
+                    Toast.makeText(
+                        this,
+                        "Please rate the product before sending ",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 else -> {
+                    // send the customer's review and dismiss the dialog
                     viewModel.sendReviews(id, review.text.toString().trim(), rating.rating.toInt())
                     dialog.dismiss()
                 }
@@ -162,7 +177,7 @@ class ReviewActivity : AppCompatActivity(), Interfaces {
         showPopUpWindow()
     }
 
-    private fun EditText.setMaxLength(maxLength: Int){
+    private fun EditText.setMaxLength(maxLength: Int) {
         filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength))
     }
 }

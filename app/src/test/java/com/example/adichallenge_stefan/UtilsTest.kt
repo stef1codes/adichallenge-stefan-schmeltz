@@ -5,14 +5,14 @@ import org.junit.Test
 
 class UtilsTest{
     @Test
-    fun `When is EditText Empty`() {
+    fun `When  EditText is Empty`() {
         // return true if the user hasn't written a review before sending
         val result = Utils().isEditTextEmpty("")
         assertEquals(true,result)
 
     }
     @Test
-    fun `When is not EditText Empty`() {
+    fun `When  EditText is not Empty`() {
         // return true if the user hasn't written a review before sending
         val result = Utils().isEditTextEmpty("Cool product!!!")
         assertEquals(false,result)

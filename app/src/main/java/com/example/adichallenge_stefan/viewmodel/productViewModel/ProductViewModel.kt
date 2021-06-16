@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.adichallenge_stefan.retrofit.RetrofitProduct.Product
+import com.example.adichallenge_stefan.network.RetrofitProduct.Product
 import com.example.adichallenge_stefan.repository.ProductsRepository
 import kotlinx.coroutines.launch
 

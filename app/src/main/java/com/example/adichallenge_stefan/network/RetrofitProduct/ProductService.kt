@@ -1,8 +1,7 @@
-package com.example.adichallenge_stefan.retrofit.RetrofitProduct
+package com.example.adichallenge_stefan.network.RetrofitProduct
 
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Path
 
 interface ProductService{
 

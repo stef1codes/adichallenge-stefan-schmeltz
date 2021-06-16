@@ -1,4 +1,4 @@
-package com.example.adichallenge_stefan.retrofit.RetrofitReview
+package com.example.adichallenge_stefan.network.RetrofitReview
 
 
 import com.google.gson.annotations.SerializedName

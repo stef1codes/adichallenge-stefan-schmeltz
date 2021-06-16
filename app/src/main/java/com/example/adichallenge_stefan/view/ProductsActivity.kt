@@ -33,7 +33,6 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         setUpdUiIds()
 
         setupViewModel()
@@ -68,9 +67,11 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
     }
 
     private fun observeData() = viewModel.productsLiveData.observe(this, Observer {
+        // If the product couldn't be retrieved from the api show message
         if (it.isEmpty()) {
             showListIsEmptyMessage()
         } else {
+            //else set the products in the recyclerviewadapter
             showRecyclerview()
             it?.let { productAdapter.setData(it) }
         }
@@ -99,20 +100,21 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
             }
         })
     }
-
+  // show message after when retreiving data from api has failed
     override fun showListIsEmptyMessage() {
         product_circular.visibility = View.GONE
         idRecycleview.visibility = View.GONE
         no_data.visibility = View.VISIBLE
     }
 
-    // if list is not empty show the recyclerview with all of its reviews and ratings
+    // if list is not empty show the recyclerview with all of its products and ratings
     override fun showRecyclerview() {
         idRecycleview.visibility = View.VISIBLE
         no_data.visibility = View.GONE
         product_circular.visibility = View.GONE
 
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         val search = menu?.findItem(R.id.search)
@@ -123,6 +125,7 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                // when the searchview has text then take the text and filter all the product that containts the written text.
                 if (newText != null) {
                     viewModel.searchText.value = newText
                     productAdapter.filter.filter(viewModel.searchText.value)

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.adichallenge_stefan.R
-import com.example.adichallenge_stefan.retrofit.RetrofitReview.Review
+import com.example.adichallenge_stefan.network.RetrofitReview.Review
 
 
 class ReviewListAdapter : ListAdapter<Review, ReviewListAdapter.ProductViewHolder>(UserComparator()) {
