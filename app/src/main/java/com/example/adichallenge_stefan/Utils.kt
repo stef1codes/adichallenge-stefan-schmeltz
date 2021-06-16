@@ -16,7 +16,6 @@ inline fun <T> safeApiCall(apiCall: () -> Response<T>): ApiResponse<T> {
     }
 }
 
-
 fun checkIfTextIsEmpty(text: String): Boolean {
     return text.isEmpty()
 }

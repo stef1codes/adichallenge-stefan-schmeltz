@@ -3,7 +3,7 @@ package com.example.adichallenge_stefan.network.RetrofitReview
 import com.example.adichallenge_stefan.network.ApiResponse
 import com.example.adichallenge_stefan.safeApiCall
 
-class ReviewApiClient(private val reviewService: ReviewService) {
+class SafeReviewApiClient(private val reviewService: ReviewService) {
 
     suspend fun getSingleProducts(id: String): ApiResponse<List<Review>> {
         return safeApiCall { reviewService.getSingleProductReview(id) }

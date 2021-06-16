@@ -5,21 +5,16 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
 object ReviewNetworkLayer {
-
     private const val PRODUCT_BASE_URL = "http://localhost:3002/"
+
     private val retrofit = Retrofit.Builder()
             .baseUrl(PRODUCT_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .client(OkHttpClient.Builder().build())
-            .build()
+            .build().create(ReviewService::class.java)
 
-    private val SERVICE: ReviewService by lazy {
-        retrofit.create(ReviewService::class.java)
-    }
-
-    val apiClient = ReviewApiClient(SERVICE)
+    val apiClient = SafeReviewApiClient(retrofit)
 
 }

@@ -51,6 +51,7 @@ class ProductListAdapter : ListAdapter<Product, ProductListAdapter.ProductViewHo
             description.text = currentProduct.product_Description
             price.text       = "${currentProduct.product_Currency}${currentProduct.product_Price}"
 
+
             Glide.with(itemView)
                 .load(currentProduct.product_ImgUrl)
                 .transform(CenterInside(), RoundedCorners(25))

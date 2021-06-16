@@ -9,10 +9,7 @@ class ReviewRepository {
     suspend fun getReview(id:String): List<Review>? {
         val request = ReviewNetworkLayer.apiClient.getSingleProducts(id)
         return if(request.failed|| !request.isSuccesful) {
-            Log.v(
-                "ReviewRepository",
-                "status-failed:${request.failed} message:${request.exception} "
-            )
+            Log.v("ReviewRepository", "status-failed:${request.failed} message:${request.exception} ")
             emptyList()
         } else {
             Log.v("ReviewRepository",  "status-succesful:${request.isSuccesful}")
