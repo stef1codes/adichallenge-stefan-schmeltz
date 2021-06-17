@@ -12,7 +12,6 @@ object ProductNetworkLayer {
 
 /**  Creation of  the Retrofit service instance . **/
     private const val PRODUCT_BASE_URL = "http://localhost:3001"
-
     private val retrofit = Retrofit.Builder()
             .baseUrl(PRODUCT_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())

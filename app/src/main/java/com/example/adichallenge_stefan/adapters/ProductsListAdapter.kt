@@ -61,14 +61,7 @@ class ProductListAdapter : ListAdapter<Product, ProductListAdapter.ProductViewHo
         }
         init {
             itemView.setOnClickListener {
-                mListener.onItemClick(
-                    mProduct.product_Id,
-                    mProduct.product_Name,
-                    mProduct.product_Description,
-                    mProduct.product_Price.toString(),
-                    mProduct.product_ImgUrl,
-                    mProduct.product_Currency
-                )
+                mListener.onItemClick(mProduct)
 
             }
         }

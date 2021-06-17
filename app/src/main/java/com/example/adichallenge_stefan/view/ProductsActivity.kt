@@ -19,6 +19,7 @@ import com.example.adichallenge_stefan.repository.ProductsRepository
 
 import com.example.adichallenge_stefan.adapters.ProductListAdapter
 import com.example.adichallenge_stefan.adapters.OnItemClickListener
+import com.example.adichallenge_stefan.network.RetrofitProduct.Product
 import kotlinx.android.synthetic.main.activity_main.*
 
 class ProductsActivity : AppCompatActivity(), Interfaces {
@@ -84,22 +85,14 @@ class ProductsActivity : AppCompatActivity(), Interfaces {
 
     private fun clickOnItemAdapter() {
         productAdapter.setOnItemClickListener(object : OnItemClickListener {
-            override fun onItemClick(
-                id: String,
-                name: String,
-                description: String,
-                price: String,
-                imageUrl: String,
-                currency: String
-            ) {
+            override fun onItemClick(product: Product) {
                 val intent = Intent(this@ProductsActivity, ReviewActivity::class.java)
-                intent.putExtra("ID",id)
-                intent.putExtra("NAME",name)
-                intent.putExtra("DESCRIPTION",description)
-                intent.putExtra("PRICE",price)
-                intent.putExtra("IMAGE",imageUrl)
-                intent.putExtra("CURRENCY",currency)
-                Log.v("TAG-onItemClick", "$id - $name - $description - $price - $currency")
+                intent.putExtra("ID",product.product_Id)
+                intent.putExtra("NAME",product.product_Name)
+                intent.putExtra("DESCRIPTION",product.product_Description)
+                intent.putExtra("PRICE",product.product_Price.toString())
+                intent.putExtra("IMAGE",product.product_ImgUrl)
+                intent.putExtra("CURRENCY",product.product_Currency)
                 startActivity(intent)
             }
         })

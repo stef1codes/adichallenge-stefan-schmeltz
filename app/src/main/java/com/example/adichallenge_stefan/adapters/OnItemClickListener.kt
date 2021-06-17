@@ -1,15 +1,9 @@
 package com.example.adichallenge_stefan.adapters
 
-interface OnItemClickListener {
-    fun onItemClick(
-        id:String,
-        name: String,
-        description: String,
-        price: String,
-        imageUrl: String,
-        currency: String
+import com.example.adichallenge_stefan.network.RetrofitProduct.Product
 
-    )
+interface OnItemClickListener {
+    fun onItemClick(product: Product)
 
 }
 
